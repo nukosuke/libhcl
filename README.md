@@ -1,3 +1,3 @@
-# libhcl
+# LibHCL
 
-HCL parser library
+HCLv2 parser library
