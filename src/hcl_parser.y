@@ -11,10 +11,15 @@ void yyerror (const char *err);
   char   cval;
 }
 
-%token <ival> HOGE
+%token <ival>
+  ADD
+  SUB
+  MUL
+  DIV
+  REM
 
 %start config_file
 
 %%
 
-config_file : HOGE;
+config_file : ADD;
