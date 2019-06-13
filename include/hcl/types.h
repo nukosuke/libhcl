@@ -1,0 +1,2 @@
+#ifndef LIBHCL_HCL_TYPES
+#endif /* LIBHCL_HCL_TYPES */
