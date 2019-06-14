@@ -28,7 +28,7 @@
 
 {   { return (L_CURL)   }
 }   { return (R_CURL)   }
-=   { return (EQUAL)    }
+=   { return (EQ)       }
 =>  { return (ARROW)    }
 
 [   { return (L_BRACK)  }
