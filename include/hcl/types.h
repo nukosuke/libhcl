@@ -1,6 +1,6 @@
 #ifndef LIBHCL_HCL_TYPES
 #define LIBHCL_HCL_TYPES
 
-typedef struct hcl_parser {} hcl_parser;
+typedef struct hcl_t {} hcl_t;
 
 #endif /* LIBHCL_HCL_TYPES */

@@ -4,11 +4,11 @@
  */
 #include <hcl.h>
 
-hcl_parser* hcl_new (void)
+hcl_t *hcl_new (void)
 {
   return 0;
 }
 
-void hcl_free (hcl_parser* hcl)
+void hcl_free (hcl_t *hcl)
 {
 }
