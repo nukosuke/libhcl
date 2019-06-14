@@ -11,8 +11,9 @@ addons:
     packages:
       - cmake-data
       - cmake
+      - flex
+      - bison
 
 script:
-  - cmake .
-  - make
+  - cmake . && make
 
