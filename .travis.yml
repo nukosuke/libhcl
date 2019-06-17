@@ -11,6 +11,20 @@ addons:
     packages:
       - cmake-data
       - cmake
+      - doxygen
 
 script:
   - cmake . && make
+
+before_deploy:
+  - doxygen Doxyfile
+
+deploy:
+  - provider: pages
+    local_dir: docs
+    skip_cleanup: true
+    github_token: $GITHUB_TOKEN
+    keep_history: false
+    on:
+      tags: true
+      condition: "$CC = gcc"
