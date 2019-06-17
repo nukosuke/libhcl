@@ -12,3 +12,7 @@ hcl_t *hcl_new (void)
 void hcl_free (hcl_t *hcl)
 {
 }
+
+void hcl_init (hcl_t *hcl)
+{
+}
