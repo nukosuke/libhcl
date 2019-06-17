@@ -18,3 +18,11 @@ int hcl_init (hcl_t *hcl)
 {
   return 1;
 }
+
+/**
+ * @param hcl HCL config object to evaluate
+ * @return The eval status
+ */
+static int hcl_eval (hcl_t *hcl)
+{
+}
