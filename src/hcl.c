@@ -25,4 +25,5 @@ int hcl_init (hcl_t *hcl)
  */
 static int hcl_eval (hcl_t *hcl)
 {
+  return 1;
 }
