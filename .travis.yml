@@ -1,0 +1,32 @@
+language: c
+
+compiler:
+  - clang
+  - gcc
+
+addons:
+  apt:
+    sources:
+      - george-edison55-precise-backports
+    packages:
+      - cmake-data
+      - cmake
+      - doxygen
+
+script:
+  - cmake .
+  - make
+  #- make check
+
+before_deploy:
+  - doxygen Doxyfile
+
+deploy:
+  - provider: pages
+    local_dir: docs
+    skip_cleanup: true
+    github_token: $GITHUB_TOKEN
+    keep_history: false
+    on:
+      tags: true
+      condition: "$CC = gcc"
