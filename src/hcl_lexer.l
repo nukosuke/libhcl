@@ -4,7 +4,8 @@
 
 %%
 
-/* Keywords */
+%{ /* Keywords */ %}
+
 +   { return (ADD)      }
 -   { return (SUB)      }
 *   { return (MUL)      }
