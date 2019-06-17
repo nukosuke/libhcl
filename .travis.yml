@@ -14,7 +14,9 @@ addons:
       - doxygen
 
 script:
-  - cmake . && make
+  - cmake .
+  - make
+  #- make check
 
 before_deploy:
   - doxygen Doxyfile
