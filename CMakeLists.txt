@@ -5,10 +5,4 @@ find_package (FLEX REQUIRED)
 find_package (BISON REQUIRED)
 
 add_subdirectory (src)
-
-##################################################
-# Testing
-##################################################
-
-enable_testing ()
 add_subdirectory (test)
