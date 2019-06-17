@@ -1,4 +1,4 @@
-/src/hcl_lexer.h
+/src/hcl_lexer.c
 /src/hcl_parser.h
 /src/hcl_parser.c
 
