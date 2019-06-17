@@ -1,6 +1,10 @@
+# Flex & Bison output
 /src/hcl_lexer.c
 /src/hcl_parser.h
 /src/hcl_parser.c
+
+# Test binary
+/test/hcl_stdin
 
 # Doxygen
 /docs
