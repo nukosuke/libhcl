@@ -14,6 +14,7 @@ void hcl_free (hcl_t *hcl)
 {
 }
 
-void hcl_init (hcl_t *hcl)
+int hcl_init (hcl_t *hcl)
 {
+  return 1;
 }

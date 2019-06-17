@@ -26,14 +26,16 @@ void hcl_free (hcl_t *hcl);
  * @fn
  * @brief Initialize HCL config object
  * @param hcl Pointer of HCL config object
+ * @return The init status
  */
-void hcl_init (hcl_t *hcl);
+int hcl_init (hcl_t *hcl);
 
 /**
  * @fn
  * @brief Parse HCL file into HCL config object
  * @param fptr File handler of HCL config file
  * @param hcl HCL config object to be written
+ * @return The parse status
  */
 int hcl_parse (FILE *fptr, hcl_t *hcl);
 
@@ -42,6 +44,7 @@ int hcl_parse (FILE *fptr, hcl_t *hcl);
  * @brief Parse HCL string into HCL config object
  * @param str HCL string
  * @param hcl HCL config object to be written
+ * @return The parse status
  */
 int hcl_parse_string (char *str, hcl_t *hcl);
 
