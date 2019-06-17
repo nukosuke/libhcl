@@ -1,5 +1,6 @@
 %{
 #include <stdio.h>
+#include <hcl/types.h>
 
 int yylex ();
 void yyerror (const char *err);
@@ -29,3 +30,27 @@ void yyerror (const char *err);
 config_file : body;
 
 body : ADD;
+
+%%
+
+void yyerror (const char *err)
+{
+}
+
+int yywrap (void)
+{
+  return 1;
+}
+
+int hcl_parse (FILE *fptr, hcl_t *hcl)
+{
+  //  extern int yyparse (void);
+  extern FILE *yyin;
+
+  yyin = fptr;
+  if (yyparse())
+    {
+      return 1;
+    }
+  return 0;
+}
