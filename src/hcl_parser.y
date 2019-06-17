@@ -26,4 +26,6 @@ void yyerror (const char *err);
 
 %%
 
-config_file : ADD;
+config_file : body;
+
+body : ADD;
