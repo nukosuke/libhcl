@@ -1,3 +1,8 @@
+/**
+ * @file hcl_stdin.c
+ * @brief Reduction printer for manual testing
+ * @author nukosuke
+ */
 #include <stdio.h>
 #include <hcl.h>
 
