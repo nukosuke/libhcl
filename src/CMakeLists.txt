@@ -20,6 +20,7 @@ add_flex_bison_dependency (hcl_lexer hcl_parser)
 
 add_library (hcl
   hcl.c
+  hcl_alloc.c
   hcl_func.c
   hcl_var.c
   ${BISON_hcl_parser_OUTPUTS}

@@ -2,10 +2,32 @@
 #include "hcl_parser.h"
 %}
 
+id_start    [a-zA-Z]
+id_continue [a-zA-Z0-9_-]
+
+decimal     [0-9]
+expmark     [eE][+-]?
+
+prose [a-zA-Z\n\r\t\"\\]
 %%
 
 %{
-/* Keywords */
+/**
+ * Identifier
+ */
+%}
+
+{id_start}{id_continue}*  {
+  yylval.sval = yytext;
+  printf("IDENT: %s\n", yylval.sval);
+  return (IDENT);
+}
+
+%{
+/**
+ * Keywords
+ * Operators and Delimiters
+ */
 %}
 
 "+"   { return (ADD);      }
@@ -29,9 +51,9 @@
 ":"   { return (COLON);    }
 "?"   { return (QUEST);    }
 
-"{"   { return (L_CURL);   }
-"}"   { return (R_CURL);   }
-"="   { return (EQ);       }
+"{"   { printf("L_CURL\n"); return (L_CURL);   }
+"}"   { printf("R_CURL\n"); return (R_CURL);   }
+"="   { printf("EQ\n"); return (EQ);       }
 "=>"  { return (ARROW);    }
 
 "["   { return (L_BRACK);  }
@@ -45,5 +67,36 @@
 
 "${"  { return (DAL_CURL); }
 "%{"  { return (PER_CURL); }
+
+[\n\r] { return (NEW_LINE); }
+
+%{
+/* suppress whitespace output */
+%}
+" "+
+
+%{
+/**
+ * Numeric Literals
+ */
+%}
+
+{decimal}+("."{decimal}+)?({expmark}{decimal}+)?    {
+  yylval.dval = atof (yytext);
+  printf("NUMERIC_LIT: %f\n", yylval.dval);
+  return (NUMERIC_LIT);
+}
+
+%{
+/**
+ * String Literals
+ */
+%}
+
+"\"".*"\""  {
+  yylval.sval = yytext;
+  printf("STRING_LIT: %s\n", yylval.sval);
+  return (STRING_LIT);
+}
 
 %%
