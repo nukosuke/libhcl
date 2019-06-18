@@ -64,6 +64,20 @@ expmark     [eE][+-]?
 "${"  { return (DAL_CURL); }
 "%{"  { return (PER_CURL); }
 
+"true"  {
+  yylval.ival = 1;
+  return (TRUE_LIT);
+}
+
+"false" {
+  yylval.ival = 0;
+  return (FALSE_LIT);
+}
+
+"null"  {
+  yylval.ival = 0;
+  return (NULL_LIT);
+}
 
 %{
 /**
