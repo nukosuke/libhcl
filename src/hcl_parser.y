@@ -10,6 +10,7 @@ void yyerror (const char *err);
   int    ival;
   double dval;
   char   cval;
+  char   *sval;
 }
 
 %token NEW_LINE
@@ -25,15 +26,14 @@ void yyerror (const char *err);
   L_PAREN R_PAREN PERIOD COMMA DOTS
   DAL_CURL PER_CURL
 %token <dval> NUMERIC_LIT
-%token <ival> TRUE_LIT
-%token <ival> FALSE_LIT
-%token <ival> NULL_LIT
+%token <sval> ANY_STRING
 
 %start config_file
 
 %%
 
-config_file : body;
+config_file
+  : body;
 
 body
   : attribute
@@ -45,9 +45,19 @@ body
 
 attribute : IDENT EQ expression NEW_LINE;
 
-block : IDENT;
+block
+  : IDENT _string_lit_or_ident L_CURL NEW_LINE R_CURL NEW_LINE;
+string_lit
+  : '"' ANY_STRING '"'
+  | "\"\"";
+_string_lit_or_ident
+  : string_lit
+  | _string_lit_or_ident string_lit
+  | IDENT
+  | _string_lit_or_ident IDENT;
 
-one_line_block : IDENT NEW_LINE;
+one_line_block
+  : IDENT NEW_LINE;
 
 expression
   : expr_term
@@ -59,9 +69,9 @@ expr_term
 
 literal_value
   : NUMERIC_LIT
-  | TRUE_LIT
-  | FALSE_LIT
-  | NULL_LIT;
+  | "true"
+  | "false"
+  | "null";
 
 operation
   : unary_op
@@ -71,7 +81,8 @@ unary_op
   : SUB expr_term
   | NOT expr_term;
 
-binary_op : expr_term binary_operator expr_term;
+binary_op
+  : expr_term binary_operator expr_term;
 
 binary_operator
   : compare_operator

@@ -8,6 +8,7 @@ id_continue [a-zA-Z0-9_-]
 decimal     [0-9]
 expmark     [eE][+-]?
 
+prose [a-zA-Z\n\r\t\"\\]
 %%
 
 %{
@@ -64,19 +65,8 @@ expmark     [eE][+-]?
 "${"  { return (DAL_CURL); }
 "%{"  { return (PER_CURL); }
 
-"true"  {
-  yylval.ival = 1;
-  return (TRUE_LIT);
-}
-
-"false" {
-  yylval.ival = 0;
-  return (FALSE_LIT);
-}
-
-"null"  {
-  yylval.ival = 0;
-  return (NULL_LIT);
+{prose}+ {
+  return (ANY_STRING);
 }
 
 %{
