@@ -6,20 +6,52 @@
 #ifndef LIBHCL_HCL_ALLOC_H
 #define LIBHCL_HCL_ALLOC_H
 
-int hcl_string ();
+/**
+ * @fn
+ * @brief Allocate HCL string
+ */
+int hcl_string (void);
 
-int hcl_number ();
+/**
+ * @fn
+ * @brief Allocate HCL number
+ */
+int hcl_number (void);
 
-int hcl_bool ();
+/**
+ * @fn
+ * @brief Allocate HCL bool
+ */
+int hcl_bool (void);
 
-int hcl_list ();
+/**
+ * @fn
+ * @brief Allocate HCL list
+ */
+int hcl_list (void);
 
-int hcl_set ();
+/**
+ * @fn
+ * @brief Allocate HCL set
+ */
+int hcl_set (void);
 
-int hcl_map ();
+/**
+ * @fn
+ * @brief Allocate HCL map
+ */
+int hcl_map (void);
 
-int hcl_object ();
+/**
+ * @fn
+ * @brief Allocate HCL object
+ */
+int hcl_object (void);
 
-int hcl_tuple ();
+/**
+ * @fn
+ * @brief Allocate HCL tuple
+ */
+int hcl_tuple (void);
 
 #endif /* LIBHCL_HCL_ALLOC_H */
