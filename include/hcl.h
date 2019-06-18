@@ -33,11 +33,11 @@ int hcl_init (struct hcl_t *hcl);
 /**
  * @fn
  * @brief Parse HCL file into HCL config object
- * @param fptr File handler of HCL config file
+ * @param fp File handler of HCL config file
  * @param hcl HCL config object to be written
  * @return The parse status
  */
-int hcl_parse (FILE *fptr, struct hcl_t *hcl);
+int hcl_parse (FILE *fp, struct hcl_t *hcl);
 
 /**
  * @fn
