@@ -68,6 +68,8 @@ prose [a-zA-Z\n\r\t\"\\]
 "${"  { return (DAL_CURL); }
 "%{"  { return (PER_CURL); }
 
+[\n\r] { return (NEW_LINE); }
+
 %{
 /* suppress whitespace output */
 %}

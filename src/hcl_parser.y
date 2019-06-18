@@ -69,19 +69,19 @@ body
 attribute
   : IDENT EQ expression NEW_LINE
   {
-    printf("attr\n");
+    printf("IDENT EQ expression NEW_LINE => attribute\n");
   }
   ;
 
 block
   : IDENT _string_lit_or_ident L_CURL NEW_LINE body R_CURL NEW_LINE
   {
-    printf("block\n");
+    printf("IDENT _string_lit_or_ident L_CURL NEW_LINE body R_CURL NEW_LINE => block\n");
   }
 one_line_block
-  : IDENT _string_lit_or_ident L_CURL _ident_expr_or_none R_CURL
+  : IDENT _string_lit_or_ident L_CURL _ident_expr_or_none R_CURL NEW_LINE
   {
-    printf("one_line_block\n");
+    printf("IDENT _string_lit_or_ident L_CURL _ident_expr_or_none R_CURL NEW_LINE => one_line_block\n");
   }
   ;
 _string_lit_or_ident
