@@ -17,14 +17,10 @@ prose [a-zA-Z\n\r\t\"\\]
  */
 %}
 
-^{id_start}{id_continue}*  {
+{id_start}{id_continue}*  {
   yylval.sval = yytext;
+  printf("IDENT: %s\n", yylval.sval);
   return (IDENT);
-}
-
-"\"".*"\""  {
-  yylval.sval = yytext;
-  return (STRING_LIT);
 }
 
 %{
@@ -55,9 +51,9 @@ prose [a-zA-Z\n\r\t\"\\]
 ":"   { return (COLON);    }
 "?"   { return (QUEST);    }
 
-"{"   { return (L_CURL);   }
-"}"   { return (R_CURL);   }
-"="   { return (EQ);       }
+"{"   { printf("L_CURL\n"); return (L_CURL);   }
+"}"   { printf("R_CURL\n"); return (R_CURL);   }
+"="   { printf("EQ\n"); return (EQ);       }
 "=>"  { return (ARROW);    }
 
 "["   { return (L_BRACK);  }
@@ -73,6 +69,11 @@ prose [a-zA-Z\n\r\t\"\\]
 "%{"  { return (PER_CURL); }
 
 %{
+/* suppress whitespace output */
+%}
+" "+
+
+%{
 /**
  * Numeric Literals
  */
@@ -80,7 +81,20 @@ prose [a-zA-Z\n\r\t\"\\]
 
 {decimal}+("."{decimal}+)?({expmark}{decimal}+)?    {
   yylval.dval = atof (yytext);
+  printf("NUMERIC_LIT: %f\n", yylval.dval);
   return (NUMERIC_LIT);
+}
+
+%{
+/**
+ * String Literals
+ */
+%}
+
+"\"".*"\""  {
+  yylval.sval = yytext;
+  printf("STRING_LIT: %s\n", yylval.sval);
+  return (STRING_LIT);
 }
 
 %%

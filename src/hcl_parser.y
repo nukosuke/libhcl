@@ -35,26 +35,34 @@ void yyerror (const char *err);
 config_file
   : body
   {
-    printf("body\n");
+    printf("body => config_file\n");
   }
   ;
 
 body
   : attribute
   {
-    printf("attribute\n");
+    printf("attribute => body\n");
   }
   | body attribute
   {
-    printf("body attribute\n");
+    printf("body attribute => body\n");
   }
   | block
   {
-    printf("block\n");
+    printf("block => body\n");
   }
   | body block
   {
-    printf("body block");
+    printf("body block => body\n");
+  }
+  | one_line_block
+  {
+    printf("one_line_block => body\n");
+  }
+  | body one_line_block
+  {
+    printf("body one_line_block => body\n");
   }
   ;
 
@@ -66,76 +74,71 @@ attribute
   ;
 
 block
-  : IDENT _string_lit_or_ident L_CURL NEW_LINE R_CURL NEW_LINE
+  : IDENT _string_lit_or_ident L_CURL NEW_LINE body R_CURL NEW_LINE
   {
     printf("block\n");
   }
-  | IDENT _string_lit_or_ident L_CURL _ident_expr_or_none R_CURL NEW_LINE
+one_line_block
+  : IDENT _string_lit_or_ident L_CURL _ident_expr_or_none R_CURL
   {
     printf("one_line_block\n");
   }
   ;
-string_lit
+_string_lit_or_ident
   : STRING_LIT
   {
-    printf("string_lit\n");
+    printf("STRING_LIT => _string_lit_or_ident\n");
   }
-  ;
-_string_lit_or_ident
-  : string_lit
+  | _string_lit_or_ident STRING_LIT
   {
-    printf("+sting_lit\n");
-  }
-  | _string_lit_or_ident string_lit
-  {
-    printf("_string_lit\n");
+    printf("_string_lit_or_ident STRING_LIT => _string_lit_or_ident\n");
   }
   | IDENT
   {
-    printf("_ident\n");
+    printf("IDENT => _string_lit_or_ident\n");
   }
   | _string_lit_or_ident IDENT
   {
-    printf("_string ident\n");
+    printf("_string_lit_or_ident IDENT => _string_lit_or_ident\n");
   }
   ;
 _ident_expr_or_none
   : IDENT EQ expression
   {
-    printf("ident = expression\n");
+    printf("IDENT EQ expression => _ident_expr_or_none\n");
   }
   | /* none */
   {
-    printf("none\n");
+    printf("/* none */ => _ident_expr_or_none\n");
   }
   ;
 
 expression
   : expr_term
   {
-    printf("expr_term\n");
+    printf("expr_term => expression\n");
   }
   | operation
   {
-    printf("operation\n");
+    printf("operation => expression\n");
   }
   | conditional
   {
-    printf("conditional");
+    printf("conditional => expression");
   }
   ;
 
 expr_term
   : literal_value
   {
-    printf("literal_value\n");
+    printf("literal_value => expr_term\n");
   }
   ;
 
 literal_value
   : NUMERIC_LIT
   {
-    printf("numeric_lit\n");
+    printf("NUMERIC_LIT => literal_value\n");
   }
   | "true"
   | "false"
