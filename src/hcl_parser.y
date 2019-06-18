@@ -47,6 +47,8 @@ attribute : IDENT EQ expression NEW_LINE;
 
 block
   : IDENT _string_lit_or_ident L_CURL NEW_LINE R_CURL NEW_LINE;
+one_line_block
+  : IDENT _string_lit_or_ident L_CURL _ident_expr_or_none R_CURL NEW_LINE;
 string_lit
   : '"' ANY_STRING '"'
   | "\"\"";
@@ -55,9 +57,9 @@ _string_lit_or_ident
   | _string_lit_or_ident string_lit
   | IDENT
   | _string_lit_or_ident IDENT;
-
-one_line_block
-  : IDENT NEW_LINE;
+_ident_expr_or_none
+  : IDENT EQ expression
+  |;
 
 expression
   : expr_term
