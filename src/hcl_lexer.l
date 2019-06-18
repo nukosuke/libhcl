@@ -2,10 +2,28 @@
 #include "hcl_parser.h"
 %}
 
+id_start    [a-zA-Z]
+id_continue [a-zA-Z0-9_-]
+
+decimal     [0-9]
+expmark     [eE][+-]?
+
 %%
 
 %{
-/* Keywords */
+/**
+ * Identifier
+ */
+%}
+
+^{id_start}{id_continue}* { return (IDENT); }
+
+
+%{
+/**
+ * Keywords
+ * Operators and Delimiters
+ */
 %}
 
 "+"   { return (ADD);      }
@@ -45,5 +63,17 @@
 
 "${"  { return (DAL_CURL); }
 "%{"  { return (PER_CURL); }
+
+
+%{
+/**
+ * Numeric Literals
+ */
+%}
+
+{decimal}+("."{decimal}+)?({expmark}{decimal}+)?    {
+  yylval.dval = atof (yytext);
+  return (NUMERIC_LIT);
+}
 
 %%

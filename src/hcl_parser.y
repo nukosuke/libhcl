@@ -12,6 +12,7 @@ void yyerror (const char *err);
   char   cval;
 }
 
+%token <ival> IDENT
 %token <ival>
   ADD SUB MUL DIV REM
   AND OR NOT
@@ -22,6 +23,7 @@ void yyerror (const char *err);
   L_BRACK R_BRACK
   L_PAREN R_PAREN PERIOD COMMA DOTS
   DAL_CURL PER_CURL
+%token <dval> NUMERIC_LIT
 
 %start config_file
 
@@ -29,12 +31,13 @@ void yyerror (const char *err);
 
 config_file : body;
 
-body : ADD;
+body : NUMERIC_LIT;
 
 %%
 
 void yyerror (const char *err)
 {
+  fprintf(stderr, "[E] %s\n", err);
 }
 
 int yywrap (void)
