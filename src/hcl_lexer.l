@@ -17,8 +17,15 @@ prose [a-zA-Z\n\r\t\"\\]
  */
 %}
 
-^{id_start}{id_continue}* { return (IDENT); }
+^{id_start}{id_continue}*  {
+  yylval.sval = yytext;
+  return (IDENT);
+}
 
+"\"".*"\""  {
+  yylval.sval = yytext;
+  return (STRING_LIT);
+}
 
 %{
 /**
@@ -64,10 +71,6 @@ prose [a-zA-Z\n\r\t\"\\]
 
 "${"  { return (DAL_CURL); }
 "%{"  { return (PER_CURL); }
-
-{prose}+ {
-  return (ANY_STRING);
-}
 
 %{
 /**

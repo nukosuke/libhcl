@@ -14,8 +14,8 @@ void yyerror (const char *err);
 }
 
 %token NEW_LINE
-%token <ival> IDENT
-%token <ival>
+%token <sval> IDENT
+%token
   ADD SUB MUL DIV REM
   AND OR NOT
   DBL_EQ NOT_EQ
@@ -26,82 +26,169 @@ void yyerror (const char *err);
   L_PAREN R_PAREN PERIOD COMMA DOTS
   DAL_CURL PER_CURL
 %token <dval> NUMERIC_LIT
-%token <sval> ANY_STRING
+%token STRING_LIT
 
 %start config_file
 
 %%
 
 config_file
-  : body;
+  : body
+  {
+    printf("body\n");
+  }
+  ;
 
 body
   : attribute
+  {
+    printf("attribute\n");
+  }
   | body attribute
+  {
+    printf("body attribute\n");
+  }
   | block
+  {
+    printf("block\n");
+  }
   | body block
-  | one_line_block
-  | body one_line_block;
+  {
+    printf("body block");
+  }
+  ;
 
-attribute : IDENT EQ expression NEW_LINE;
+attribute
+  : IDENT EQ expression NEW_LINE
+  {
+    printf("attr\n");
+  }
+  ;
 
 block
-  : IDENT _string_lit_or_ident L_CURL NEW_LINE R_CURL NEW_LINE;
-one_line_block
-  : IDENT _string_lit_or_ident L_CURL _ident_expr_or_none R_CURL NEW_LINE;
+  : IDENT _string_lit_or_ident L_CURL NEW_LINE R_CURL NEW_LINE
+  {
+    printf("block\n");
+  }
+  | IDENT _string_lit_or_ident L_CURL _ident_expr_or_none R_CURL NEW_LINE
+  {
+    printf("one_line_block\n");
+  }
+  ;
 string_lit
-  : '"' ANY_STRING '"'
-  | "\"\"";
+  : STRING_LIT
+  {
+    printf("string_lit\n");
+  }
+  ;
 _string_lit_or_ident
   : string_lit
+  {
+    printf("+sting_lit\n");
+  }
   | _string_lit_or_ident string_lit
+  {
+    printf("_string_lit\n");
+  }
   | IDENT
-  | _string_lit_or_ident IDENT;
+  {
+    printf("_ident\n");
+  }
+  | _string_lit_or_ident IDENT
+  {
+    printf("_string ident\n");
+  }
+  ;
 _ident_expr_or_none
   : IDENT EQ expression
-  |;
+  {
+    printf("ident = expression\n");
+  }
+  | /* none */
+  {
+    printf("none\n");
+  }
+  ;
 
 expression
   : expr_term
+  {
+    printf("expr_term\n");
+  }
   | operation
-  | conditional;
+  {
+    printf("operation\n");
+  }
+  | conditional
+  {
+    printf("conditional");
+  }
+  ;
 
 expr_term
-  : literal_value;
+  : literal_value
+  {
+    printf("literal_value\n");
+  }
+  ;
 
 literal_value
   : NUMERIC_LIT
+  {
+    printf("numeric_lit\n");
+  }
   | "true"
   | "false"
-  | "null";
+  | "null"
+  ;
 
 operation
   : unary_op
-  | binary_op;
+  | binary_op
+  ;
 
 unary_op
   : SUB expr_term
-  | NOT expr_term;
+  | NOT expr_term
+  ;
 
 binary_op
-  : expr_term binary_operator expr_term;
+  : expr_term binary_operator expr_term
+  {
+    printf("binary_op\n");
+  }
+  ;
 
 binary_operator
   : compare_operator
+  {
+    printf("compare_operator\n");
+  }
   | arithmetic_operator
-  | logic_operator;
+  {
+    printf("arithmetic_operator\n");
+  }
+  | logic_operator
+  {
+    printf("logic_operator\n");
+  }
+  ;
 
 compare_operator
-  : DBL_EQ | NOT_EQ | LT | GT | LT_EQ | GT_EQ;
+  : DBL_EQ | NOT_EQ | LT | GT | LT_EQ | GT_EQ
+  ;
 
 arithmetic_operator
-  : ADD | SUB | MUL | DIV | REM;
+  : ADD | SUB | MUL | DIV | REM
+  ;
 
 logic_operator
-  : AND | OR | NOT;
+  : AND | OR | NOT
+  ;
 
 conditional
-  : expression QUEST expression COLON expression;
+  : expression QUEST expression COLON expression
+  ;
 
 %%
 
@@ -115,12 +202,11 @@ int yywrap (void)
   return 1;
 }
 
-int hcl_parse (FILE *fptr, struct hcl_t *hcl)
+int hcl_parse (FILE *fp, struct hcl_t *hcl)
 {
-  //  extern int yyparse (void);
   extern FILE *yyin;
 
-  yyin = fptr;
+  yyin = fp;
   if (yyparse())
     {
       return 1;
