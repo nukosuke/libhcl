@@ -13,14 +13,14 @@
  * @brief Constructor of HCL config
  * @return Pointer of HCL config object
  */
-hcl_t *hcl_new (void);
+struct hcl_t *hcl_new (void);
 
 /**
  * @fn
  * @brief Destructor of HCL config
  * @param hcl Pointer of HCL config object
  */
-void hcl_free (hcl_t *hcl);
+void hcl_free (struct hcl_t *hcl);
 
 /**
  * @fn
@@ -28,7 +28,7 @@ void hcl_free (hcl_t *hcl);
  * @param hcl Pointer of HCL config object
  * @return The init status
  */
-int hcl_init (hcl_t *hcl);
+int hcl_init (struct hcl_t *hcl);
 
 /**
  * @fn
@@ -37,7 +37,7 @@ int hcl_init (hcl_t *hcl);
  * @param hcl HCL config object to be written
  * @return The parse status
  */
-int hcl_parse (FILE *fptr, hcl_t *hcl);
+int hcl_parse (FILE *fptr, struct hcl_t *hcl);
 
 /**
  * @fn
@@ -46,6 +46,6 @@ int hcl_parse (FILE *fptr, hcl_t *hcl);
  * @param hcl HCL config object to be written
  * @return The parse status
  */
-int hcl_parse_string (char *str, hcl_t *hcl);
+int hcl_parse_string (char *str, struct hcl_t *hcl);
 
 #endif /* LIBHCL_HCL_H */

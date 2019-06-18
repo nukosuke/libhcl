@@ -42,7 +42,7 @@ int yywrap (void)
   return 1;
 }
 
-int hcl_parse (FILE *fptr, hcl_t *hcl)
+int hcl_parse (FILE *fptr, struct hcl_t *hcl)
 {
   //  extern int yyparse (void);
   extern FILE *yyin;
