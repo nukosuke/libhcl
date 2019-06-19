@@ -161,6 +161,10 @@ expr_term
   {
     printf("template_expr => expr_term\n");
   }
+  | variable_expr
+  {
+    printf ("variable_expr => expr_term\n");
+  }
   ;
 
 /**
@@ -222,6 +226,16 @@ template_expr
   ;
 quoted_template : "TODO::quoted_template";
 heredoc_template : "TODO::heredoc_template";
+
+/**
+ * VariableExpr
+ */
+variable_expr
+  : IDENT
+  {
+    printf ("IDENT => variable_expr\n");
+  }
+  ;
 
 /**
  * Operation
