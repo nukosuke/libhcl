@@ -32,6 +32,9 @@ void yyerror (const char *err);
 
 %%
 
+/**
+ * ConfigFile
+ */
 config_file
   : body
   {
@@ -39,6 +42,9 @@ config_file
   }
   ;
 
+/**
+ * Body
+ */
 body
   : attribute
   {
@@ -66,6 +72,9 @@ body
   }
   ;
 
+/**
+ * Attribute
+ */
 attribute
   : IDENT EQ expression NEW_LINE
   {
@@ -73,6 +82,9 @@ attribute
   }
   ;
 
+/**
+ * Block
+ */
 block
   : IDENT _string_lit_or_ident L_CURL NEW_LINE body R_CURL NEW_LINE
   {
@@ -113,6 +125,9 @@ _ident_expr_or_none
   }
   ;
 
+/**
+ * Expression
+ */
 expression
   : expr_term
   {
@@ -128,6 +143,9 @@ expression
   }
   ;
 
+/**
+ * ExprTerm
+ */
 expr_term
   : literal_value
   {
@@ -143,6 +161,9 @@ expr_term
   }
   ;
 
+/**
+ * LiteralValue
+ */
 literal_value
   : NUMERIC_LIT
   {
@@ -153,6 +174,9 @@ literal_value
   | "null"
   ;
 
+/**
+ * CollectionValue
+ */
 collection_value
   : tuple
   | object
@@ -178,6 +202,9 @@ _object_item
   | _object_item COMMA
   ;
 
+/**
+ * TemplateExpr
+ */
 template_expr
   : quoted_template
   | heredoc_template
@@ -185,23 +212,23 @@ template_expr
 quoted_template : "TODO::quoted_template";
 heredoc_template : "TODO::heredoc_template";
 
+/**
+ * Operation
+ */
 operation
   : unary_op
   | binary_op
   ;
-
 unary_op
   : SUB expr_term
   | NOT expr_term
   ;
-
 binary_op
   : expr_term binary_operator expr_term
   {
     printf("binary_op\n");
   }
   ;
-
 binary_operator
   : compare_operator
   {
@@ -216,19 +243,19 @@ binary_operator
     printf("logic_operator\n");
   }
   ;
-
 compare_operator
   : DBL_EQ | NOT_EQ | LT | GT | LT_EQ | GT_EQ
   ;
-
 arithmetic_operator
   : ADD | SUB | MUL | DIV | REM
   ;
-
 logic_operator
   : AND | OR | NOT
   ;
 
+/**
+ * Conditional
+ */
 conditional
   : expression QUEST expression COLON expression
   ;
