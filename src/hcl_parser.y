@@ -25,6 +25,8 @@ void yyerror (const char *err);
   L_BRACK R_BRACK
   L_PAREN R_PAREN PERIOD COMMA DOTS
   DAL_CURL PER_CURL
+%token TRUE FALSE
+%token NULL_LIT
 %token <dval> NUMERIC_LIT
 %token STRING_LIT
 
@@ -169,9 +171,18 @@ literal_value
   {
     printf("NUMERIC_LIT => literal_value\n");
   }
-  | "true"
-  | "false"
-  | "null"
+  | TRUE
+  {
+    printf("TRUE => literal_value\n");
+  }
+  | FALSE
+  {
+    printf("FALSE => literal_value\n");
+  }
+  | NULL_LIT
+  {
+    printf("NULL_LIT => literal_value\n");
+  }
   ;
 
 /**

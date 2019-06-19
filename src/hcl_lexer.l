@@ -13,18 +13,6 @@ prose [a-zA-Z\n\r\t\"\\]
 
 %{
 /**
- * Identifier
- */
-%}
-
-{id_start}{id_continue}*  {
-  yylval.sval = yytext;
-  printf("IDENT: %s\n", yylval.sval);
-  return (IDENT);
-}
-
-%{
-/**
  * Keywords
  * Operators and Delimiters
  */
@@ -68,12 +56,28 @@ prose [a-zA-Z\n\r\t\"\\]
 "${"  { return (DAL_CURL); }
 "%{"  { return (PER_CURL); }
 
+"true"  { return (TRUE);     }
+"false" { return (FALSE);    }
+"null"  { return (NULL_LIT); }
+
 [\n\r] { return (NEW_LINE); }
 
 %{
 /* suppress whitespace output */
 %}
 " "+
+
+%{
+/**
+ * Identifier
+ */
+%}
+
+{id_start}{id_continue}*  {
+  yylval.sval = yytext;
+  printf("IDENT: %s\n", yylval.sval);
+  return (IDENT);
+}
 
 %{
 /**
