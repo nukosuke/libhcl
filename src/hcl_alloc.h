@@ -5,24 +5,28 @@
  */
 #ifndef LIBHCL_HCL_ALLOC_H
 #define LIBHCL_HCL_ALLOC_H
+#include <stdbool.h>
 
 /**
  * @fn
  * @brief Allocate HCL string
+ * @param val The string to be assigned
  */
-int hcl_string (void);
+int hcl_string (char *val);
 
 /**
  * @fn
  * @brief Allocate HCL number
+ * @param val The number to be assigned
  */
-int hcl_number (void);
+int hcl_number (double val);
 
 /**
  * @fn
  * @brief Allocate HCL bool
+ * @param val The boolean to be assigned
  */
-int hcl_bool (void);
+int hcl_bool (bool val);
 
 /**
  * @fn
