@@ -165,6 +165,10 @@ expr_term
   {
     printf ("variable_expr => expr_term\n");
   }
+  | function_call
+  {
+    printf ("function_call => expr_term\n");
+  }
   ;
 
 /**
@@ -234,6 +238,35 @@ variable_expr
   : IDENT
   {
     printf ("IDENT => variable_expr\n");
+  }
+  ;
+
+/**
+ * FunctionCall
+ */
+function_call
+  : IDENT L_PAREN arguments R_PAREN
+  ;
+arguments
+  : expression
+  {
+    printf ("expression => arguments\n");
+  }
+  | arguments COMMA expression
+  {
+    printf ("arguments COMMA expression => arguments\n");
+  }
+  | arguments COMMA
+  {
+    printf ("arguments COMMA => arguments\n");
+  }
+  | arguments DOTS
+  {
+    printf ("arguments DOTS => arguments\n");
+  }
+  | /* empty */
+  {
+    printf ("/* empty */ => arguments\n");
   }
   ;
 
