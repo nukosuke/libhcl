@@ -4,6 +4,7 @@
  * @author nukosuke
  */
 #include <stdio.h>
+#include <hcl.h>
 
 int main (int argc, char **argv)
 {
@@ -20,11 +21,21 @@ int main (int argc, char **argv)
       return 1;
     }
 
-  // TODO
+  // TODO:
   // new sym hashtable
-  // parse
-  // dump the result
 
+  struct hcl_t *hcl = hcl_new ();
+
+  if (hcl_init (hcl))
+    {
+      fprintf(stderr, "[W] hcl_init (): failed to initialize HCL interpreter.\n");
+      fprintf(stderr, "    Variable reference and Function call will be fail.\n");
+    }
+
+  hcl_parse (fp, hcl);
+  // TODO: dump the result
+
+  hcl_free (hcl);
   fclose (fp);
   return 0;
 }
