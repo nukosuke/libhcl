@@ -17,7 +17,7 @@ int main (int argc, char **argv)
   FILE *fp;
   if ((fp = fopen (argv[1], "r")) == NULL)
     {
-      fprintf(stderr, "[E] Failed to open file: %s\n", argv[1]);
+      fprintf (stderr, "[E] Failed to open file: %s\n", argv[1]);
       return 1;
     }
 
@@ -28,8 +28,8 @@ int main (int argc, char **argv)
 
   if (hcl_init (hcl))
     {
-      fprintf(stderr, "[W] hcl_init (): failed to initialize HCL interpreter.\n");
-      fprintf(stderr, "    Variable reference and Function call will be fail.\n");
+      fprintf (stderr, "[W] hcl_init (): failed to initialize HCL interpreter.\n");
+      fprintf (stderr, "    Variable reference and Function call will be fail.\n");
     }
 
   hcl_parse (fp, hcl);

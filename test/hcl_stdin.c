@@ -12,8 +12,8 @@ int main (void)
 
   if (hcl_init (hcl))
     {
-      fprintf(stderr, "[W] hcl_init (): failed to initialize HCL interpreter.\n");
-      fprintf(stderr, "    Variable reference and Function call will be fail.\n");
+      fprintf (stderr, "[W] hcl_init (): failed to initialize HCL interpreter.\n");
+      fprintf (stderr, "    Variable reference and Function call will be fail.\n");
     }
 
   hcl_parse (stdin, hcl);
