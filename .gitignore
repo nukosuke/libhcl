@@ -5,6 +5,7 @@
 
 # Test binary
 /test/hcl_stdin
+/test/hcl_symtbl
 
 # Doxygen
 /docs
