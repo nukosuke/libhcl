@@ -30,6 +30,9 @@ void yyerror (const char *err);
 %token <dval> NUMERIC_LIT
 %token STRING_LIT
 
+%token IF
+%token FOR IN
+
 %start config_file
 
 %%
@@ -172,6 +175,17 @@ expr_term :
   function_call
     {
       printf ("function_call => expr_term\n");
+    } |
+  for_expr
+    {
+      printf ("for_expr => expr_term\n");
+    } |
+// TODO: expr_term index
+// TODO: expr_term get_attr
+// TODO: expr_term splat
+  L_PAREN expression R_PAREN
+    {
+      printf ("L_PAREN expression R_PAREN => expr_term\n");
     }
   ; /* expr_term */
 
@@ -285,6 +299,43 @@ arguments :
       printf ("/* empty */ => arguments\n");
     }
   ; /* arguments */
+
+/**
+ * ForExpr
+ */
+for_expr :
+  for_tuple_expr |
+  for_object_expr
+  ; /* for_expr */
+
+for_tuple_expr :
+  L_BRACK for_intro expression R_BRACK |
+  L_BRACK for_intro expression for_cond R_BRACK
+  ; /* for_tuple_expr */
+
+for_object_expr :
+  L_CURL for_intro expression ARROW expression _optional_dots _optional_for_cond R_CURL
+  ; /* for_object_expr */
+_optional_dots :
+  DOTS |
+  /* empty */
+  ; /* _optional_dots */
+_optional_for_cond :
+  for_cond |
+  /* empty */
+  ; /* _optional_for_cond */
+
+for_intro :
+  FOR IDENT _optional_second_ident IN expression COLON
+  ; /* for_intro */
+_optional_second_ident :
+  COMMA IDENT |
+  /* empty */
+  ; /* _optional_second_ident */
+
+for_cond :
+  IF expression
+  ; /* for_cond */
 
 /**
  * Operation

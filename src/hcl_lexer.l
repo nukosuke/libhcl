@@ -60,6 +60,10 @@ prose [a-zA-Z\n\r\t\"\\]
 "false" { return (FALSE);    }
 "null"  { return (NULL_LIT); }
 
+"if"  { return (IF);  }
+"for" { return (FOR); }
+"in"  { return (IN);  }
+
 [\n\r] { return (NEW_LINE); }
 
 %{
@@ -94,10 +98,11 @@ prose [a-zA-Z\n\r\t\"\\]
 %{
 /**
  * String Literals
+ * TODO: punctual Unicode range
  */
 %}
 
-"\"".*"\""  {
+"\""[a-zA-Z0-9_\\\- ]*"\""  {
   yylval.sval = yytext;
   printf("STRING_LIT: %s\n", yylval.sval);
   return (STRING_LIT);
