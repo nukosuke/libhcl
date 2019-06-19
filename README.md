@@ -16,4 +16,4 @@ $ make
 
 MPL-2.0
 
-See the file [./LICENSE] for details.
+See the file [LICENSE](./LICENSE) for details.
