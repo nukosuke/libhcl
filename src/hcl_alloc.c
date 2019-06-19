@@ -5,17 +5,17 @@
  */
 #include "hcl_alloc.h"
 
-int hcl_string ()
+int hcl_string (char *val)
 {
   return 1;
 }
 
-int hcl_number ()
+int hcl_number (double val)
 {
   return 1;
 }
 
-int hcl_bool ()
+int hcl_bool (bool val)
 {
   return 1;
 }

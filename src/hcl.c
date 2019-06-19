@@ -3,15 +3,20 @@
  * @brief Implementation of fundamental functions
  * @author nukosuke
  */
+#include <stdlib.h>
 #include <hcl.h>
+#include <hcl/types.h>
 
 struct hcl_t *hcl_new (void)
 {
-  return 0;
+  struct hcl_t *hcl = (struct hcl_t *) malloc (sizeof (struct hcl_t));
+  return hcl;
 }
 
 void hcl_free (struct hcl_t *hcl)
 {
+  if (hcl != NULL)
+    free (hcl);
 }
 
 int hcl_init (struct hcl_t *hcl)
