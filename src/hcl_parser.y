@@ -133,6 +133,14 @@ expr_term
   {
     printf("literal_value => expr_term\n");
   }
+  | collection_value
+  {
+    printf("collection_value => expr_term\n");
+  }
+  | template_expr
+  {
+    printf("template_expr => expr_term\n");
+  }
   ;
 
 literal_value
@@ -144,6 +152,38 @@ literal_value
   | "false"
   | "null"
   ;
+
+collection_value
+  : tuple
+  | object
+  ;
+tuple
+  : L_BRACK _tuple_item R_BRACK
+  ;
+_tuple_item
+  : expression
+  | _tuple_item COMMA expression
+  | _tuple_item COMMA
+  ;
+object
+  : L_CURL _object_item R_CURL
+  ;
+objectelem
+  : IDENT EQ expression
+  | expression EQ expression
+  ;
+_object_item
+  : objectelem
+  | _object_item COMMA objectelem
+  | _object_item COMMA
+  ;
+
+template_expr
+  : quoted_template
+  | heredoc_template
+  ;
+quoted_template : "TODO::quoted_template";
+heredoc_template : "TODO::heredoc_template";
 
 operation
   : unary_op
