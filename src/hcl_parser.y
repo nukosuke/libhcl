@@ -1,8 +1,7 @@
 %{
 /**
- * HCL Parser
- *
  * @file hcl_parser.c
+ * @brief HCL Parser
  * @author nukosuke
  */
 #include <stdio.h>

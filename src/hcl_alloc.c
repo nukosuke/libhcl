@@ -56,6 +56,12 @@ struct hcl_tuple_elem
 {
 };
 
+/**
+ * Allocate HCL string
+ *
+ * @param val The string to be assigned
+ * @return Status of allocation
+ */
 int hcl_string (char *val)
 {
   struct hcl_string *s = (struct hcl_string *) malloc (sizeof (struct hcl_string));
@@ -73,6 +79,12 @@ int hcl_string (char *val)
   return 0;
 }
 
+/**
+ * Allocate HCL number
+ *
+ * @param val The number to be assigned
+ * @return Status of allocation
+ */
 int hcl_number (double val)
 {
   struct hcl_number *n = (struct hcl_number *) malloc (sizeof (struct hcl_number));
@@ -83,6 +95,12 @@ int hcl_number (double val)
   return 0;
 }
 
+/**
+ * Allocate HCL bool
+ *
+ * @param val The boolean to be assigned
+ * @return Status of allocation
+ */
 int hcl_bool (bool val)
 {
   struct hcl_bool *b = (struct hcl_bool *) malloc (sizeof (struct hcl_bool));
@@ -93,26 +111,41 @@ int hcl_bool (bool val)
   return 0;
 }
 
+/**
+ * Allocate HCL list
+ */
 int hcl_list ()
 {
   return 1;
 }
 
+/**
+ * Allocate HCL set
+ */
 int hcl_set ()
 {
   return 1;
 }
 
+/**
+ * Allocate HCL map
+ */
 int hcl_map ()
 {
   return 1;
 }
 
+/**
+ * Allocate HCL object
+ */
 int hcl_object ()
 {
   return 1;
 }
 
+/**
+ * Allocate HCL tuple
+ */
 int hcl_tuple ()
 {
   return 1;
