@@ -41,7 +41,7 @@ struct hcl_symtbl *hcl_symtbl_new (size_t size)
  */
 void hcl_symtbl_free (struct hcl_symtbl *tbl)
 {
-  for (struct hcl_symtbl_ent **ent = tbl->ent; ent != NULL; ent++)
+  for (struct hcl_symtbl_ent **ent = tbl->ent; *ent != NULL; ent++)
     free (*ent);
 
   free (tbl->ent);
@@ -60,7 +60,7 @@ struct hcl_symtbl_ent *hcl_symtbl_getent (void)
 
 void hcl_symtbl_print (struct hcl_symtbl *tbl)
 {
-  for (struct hcl_symtbl_ent **ent = tbl->ent; ent != NULL; ent++)
+  for (struct hcl_symtbl_ent **ent = tbl->ent; *ent != NULL; ent++)
     {
       printf ("type: %d\t", (*ent)->type);
       printf ("name: %s\t", (*ent)->name);
