@@ -178,8 +178,14 @@ expr_term :
     {
       printf ("for_expr => expr_term\n");
     } |
-// TODO: expr_term index
-// TODO: expr_term get_attr
+  expr_term index
+    {
+      printf ("expr_term index => expr_term\n");
+    } |
+  expr_term get_attr
+    {
+      printf ("expr_term get_attr => expr_term\n");
+    } |
 // TODO: expr_term splat
   L_PAREN expression R_PAREN
     {
@@ -334,6 +340,26 @@ _optional_second_ident :
 for_cond :
   IF expression
   ; /* for_cond */
+
+/**
+ * Index
+ */
+index :
+  L_BRACK expression R_BRACK
+    {
+      printf ("L_BRACK expression R_BRACK => index\n");
+    }
+  ; /* index */
+
+/**
+ * GetAttr
+ */
+get_attr :
+  PERIOD IDENT
+    {
+      printf ("PERIOD IDENT => get_attr\n");
+    }
+  ; /* get_attr */
 
 /**
  * Operation
