@@ -35,6 +35,6 @@ void hcl_symtbl_ent_free (struct hcl_symtbl_ent *);
 void hcl_symtbl_free (struct hcl_symtbl *);
 
 int hcl_symtbl_setent (struct hcl_symtbl_ent *, struct hcl_symtbl *);
-struct hcl_symtbl_ent *hcl_symtbl_getent ();
+struct hcl_symtbl_ent *hcl_symtbl_getent (void);
 
 #endif /* LIBHCL_HCL_SYMTBL */

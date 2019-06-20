@@ -28,7 +28,7 @@ int hcl_symtbl_setent (struct hcl_symtbl_ent *ent, struct hcl_symtbl *tbl)
   return 1;
 }
 
-struct hcl_symtbl_ent *hcl_symtbl_getent ()
+struct hcl_symtbl_ent *hcl_symtbl_getent (void)
 {
   return 0;
 }
