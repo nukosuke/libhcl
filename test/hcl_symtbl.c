@@ -1,5 +1,5 @@
 /**
- * @file hcl_hash.c
+ * @file hcl_symtbl.c
  * @brief Symbol table printer for manual testing
  * @author nukosuke
  */
