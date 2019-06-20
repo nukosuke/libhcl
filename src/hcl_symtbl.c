@@ -6,7 +6,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h> // memset
-#include "hcl_symtbl.h"
+#include <hcl/symtbl.h>
 
 /**
  * Symbol table allocator

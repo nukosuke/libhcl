@@ -1,5 +1,5 @@
 /**
- * @file hcl_symtbl.h
+ * @file symtbl.h
  * @brief HCL symbol table
  * @author nukosuke
  */
