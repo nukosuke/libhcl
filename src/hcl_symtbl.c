@@ -49,6 +49,15 @@ void hcl_symtbl_free (struct hcl_symtbl *tbl)
   free (tbl);
 }
 
+/**
+ * Add new entry to symbol table
+ *
+ * @param tbl Pointer of symbol table
+ * @param name The name of entry
+ * @param addr Address of value data
+ * @param type HCL type
+ * @return Status of addition
+ */
 int hcl_symtbl_addent (struct hcl_symtbl *tbl, char *name, void *addr, enum hcl_type type)
 {
   *tbl->cursor = hcl_symtbl_ent_new (name, addr, type);
@@ -59,11 +68,17 @@ int hcl_symtbl_addent (struct hcl_symtbl *tbl, char *name, void *addr, enum hcl_
   return 0;
 }
 
-struct hcl_symtbl_ent *hcl_symtbl_getent (void)
+struct hcl_symtbl_ent *hcl_symtbl_getent (char *name)
 {
+  // TODO: calc string hash and searh from list
   return 0;
 }
 
+/**
+ * Print symbol table entries to stdout
+ *
+ * @param tbl Pointer of symbol table
+ */
 void hcl_symtbl_print (struct hcl_symtbl *tbl)
 {
   for (struct hcl_symtbl_ent **ent = tbl->ent; *ent != NULL; ent++)
