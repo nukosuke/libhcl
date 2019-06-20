@@ -5,6 +5,9 @@
  */
 #include <stdio.h>
 #include <hcl.h>
+#include <hcl/symtbl.h>
+
+#define SYMTBL_DEFAULT_SIZE 2048
 
 int main (int argc, char **argv)
 {
@@ -25,12 +28,19 @@ int main (int argc, char **argv)
   // new sym hashtable
 
   struct hcl_t *hcl = hcl_new ();
-
   if (hcl_init (hcl))
     {
       fprintf (stderr, "[W] hcl_init (): failed to initialize HCL interpreter.\n");
       fprintf (stderr, "    Variable reference and Function call will be fail.\n");
     }
+
+  // TODO: move to under hcl_parse ()
+  struct hcl_symtbl *tbl = hcl_symtbl_new (SYMTBL_DEFAULT_SIZE);
+  hcl_symtbl_addent (tbl, "hoge", "hoge", HCL_STRING_T);
+  hcl_symtbl_addent (tbl, "fuga", hcl, HCL_NUMBER_T);
+  hcl_symtbl_addent (tbl, "piyo", hcl, HCL_BOOL_T);
+  hcl_symtbl_print (tbl);
+  hcl_symtbl_free (tbl);
 
   hcl_parse (fp, hcl);
   // TODO: dump the result

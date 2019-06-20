@@ -29,6 +29,7 @@ struct hcl_symtbl *hcl_symtbl_new (size_t size)
 
   // Zero fill to terminate iteration by NULL comparison
   memset (tbl->ent, 0, sizeof (*tbl->ent));
+  tbl->cursor = tbl->ent;
   tbl->size = size;
 
   return tbl;
@@ -42,15 +43,20 @@ struct hcl_symtbl *hcl_symtbl_new (size_t size)
 void hcl_symtbl_free (struct hcl_symtbl *tbl)
 {
   for (struct hcl_symtbl_ent **ent = tbl->ent; *ent != NULL; ent++)
-    free (*ent);
+    hcl_symtbl_ent_free (*ent);
 
   free (tbl->ent);
   free (tbl);
 }
 
-int hcl_symtbl_addent (struct hcl_symtbl_ent *ent, struct hcl_symtbl *tbl)
+int hcl_symtbl_addent (struct hcl_symtbl *tbl, char *name, void *addr, enum hcl_type type)
 {
-  return 1;
+  *tbl->cursor = hcl_symtbl_ent_new (name, addr, type);
+  if (*tbl->cursor == NULL)
+    return 1;
+
+  tbl->cursor++;
+  return 0;
 }
 
 struct hcl_symtbl_ent *hcl_symtbl_getent (void)
@@ -66,4 +72,30 @@ void hcl_symtbl_print (struct hcl_symtbl *tbl)
       printf ("name: %s\t", (*ent)->name);
       printf ("addr: %p\n", (*ent)->addr);
     }
+}
+
+static struct hcl_symtbl_ent *hcl_symtbl_ent_new (char *name, void *addr, enum hcl_type type)
+{
+  struct hcl_symtbl_ent *ent = (struct hcl_symtbl_ent *) malloc (sizeof (struct hcl_symtbl_ent));
+  if (ent == NULL)
+    return NULL;
+
+  ent->name = (char *) malloc (sizeof (name));
+  if (ent->name == NULL)
+    {
+      free (ent);
+      return NULL;
+    }
+
+  strcpy (ent->name, name);
+  ent->addr = addr;
+  ent->type = type;
+
+  return ent;
+}
+
+static void hcl_symtbl_ent_free (struct hcl_symtbl_ent *ent)
+{
+  free (ent->name);
+  free (ent);
 }
