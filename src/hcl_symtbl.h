@@ -26,7 +26,7 @@ struct hcl_symtbl_ent
 
 struct hcl_symtbl
 {
-  struct hcl_symtbl_ent *ent;
+  struct hcl_symtbl_ent **ent;
   size_t size;
 };
 
@@ -36,5 +36,7 @@ void hcl_symtbl_free (struct hcl_symtbl *);
 
 int hcl_symtbl_addent (struct hcl_symtbl_ent *, struct hcl_symtbl *);
 struct hcl_symtbl_ent *hcl_symtbl_getent (void);
+
+void hcl_symtbl_print (struct hcl_symtbl *);
 
 #endif /* LIBHCL_HCL_SYMTBL */
