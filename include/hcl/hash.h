@@ -6,16 +6,7 @@
 #ifndef LIBHCL_HCL_HASH_H
 #define LIBHCL_HCL_HASH_H
 #include <stddef.h> // size_t
-
-enum hcl_type {
-  HCL_STRING_T,
-  HCL_NUMBER_T,
-  HCL_BOOL_T,
-  HCL_LIST_T,
-  HCL_MAP_T,
-  HCL_OBJECT_T,
-  HCL_TUPLE_T,
-};
+#include <hcl/types.h>
 
 struct hcl_hash_ent
 {
