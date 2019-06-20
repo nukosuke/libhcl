@@ -1,4 +1,9 @@
 %{
+/**
+ * @file hcl_parser.c
+ * @brief HCL Parser
+ * @author nukosuke
+ */
 #include <stdio.h>
 #include <hcl/types.h>
 
@@ -449,6 +454,13 @@ int yywrap (void)
   return 1;
 }
 
+/**
+ * Parse HCL file into HCL config object
+ *
+ * @param fp File handler of HCL config file
+ * @param hcl HCL config object to be written
+ * @return The parse status
+ */
 int hcl_parse (FILE *fp, struct hcl_t *hcl)
 {
   extern FILE *yyin;
@@ -459,4 +471,16 @@ int hcl_parse (FILE *fp, struct hcl_t *hcl)
       return 1;
     }
   return 0;
+}
+
+/**
+ * Parse HCL string into HCL config object
+ *
+ * @param str HCL string
+ * @param hcl HCL config object to be written
+ * @return The parse status
+ */
+int hcl_parse_string (char *str, struct hcl_t *hcl)
+{
+  return 1;
 }
