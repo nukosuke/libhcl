@@ -23,30 +23,6 @@ struct hcl_bool
   bool val;
 };
 
-struct hcl_list
-{
-  struct hcl_list_elem *head;
-  int len;
-};
-
-struct hcl_list_elem
-{
-  struct hcl_list_elem *next;
-  void *val;
-};
-
-struct hcl_object
-{
-
-};
-
-struct hcl_object_elem
-{
-  char *key;
-  void *val;
-  // enum hcl_type type
-};
-
 struct hcl_tuple
 {
   struct hcl_tuple_elem *elem;
@@ -109,14 +85,6 @@ int hcl_bool (bool val)
 
   b->val = val;
   return 0;
-}
-
-/**
- * Allocate HCL list
- */
-int hcl_list ()
-{
-  return 1;
 }
 
 /**
