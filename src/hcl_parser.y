@@ -14,22 +14,20 @@ void yyerror (const char *err);
 }
 
 %token NEW_LINE
+%token ADD SUB MUL DIV REM
+%token AND OR NOT
+%token DBL_EQ NOT_EQ
+%token LT GT LT_EQ GT_EQ
+%token COLON QUEST
+%token L_CURL R_CURL EQ ARROW
+%token L_BRACK R_BRACK
+%token L_PAREN R_PAREN PERIOD COMMA DOTS
+%token DAL_CURL PER_CURL
 %token <sval> IDENT
-%token
-  ADD SUB MUL DIV REM
-  AND OR NOT
-  DBL_EQ NOT_EQ
-  LT GT LT_EQ GT_EQ
-  COLON QUEST
-  L_CURL R_CURL EQ ARROW
-  L_BRACK R_BRACK
-  L_PAREN R_PAREN PERIOD COMMA DOTS
-  DAL_CURL PER_CURL
 %token TRUE FALSE
 %token NULL_LIT
 %token <dval> NUMERIC_LIT
 %token STRING_LIT
-
 %token IF
 %token FOR IN
 
