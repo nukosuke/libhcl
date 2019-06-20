@@ -156,15 +156,15 @@ expression :
 expr_term :
   literal_value
     {
-      printf("literal_value => expr_term\n");
+      printf ("literal_value => expr_term\n");
     } |
   collection_value
     {
-      printf("collection_value => expr_term\n");
+      printf ("collection_value => expr_term\n");
     } |
   template_expr
     {
-      printf("template_expr => expr_term\n");
+      printf ("template_expr => expr_term\n");
     } |
   variable_expr
     {
@@ -186,7 +186,10 @@ expr_term :
     {
       printf ("expr_term get_attr => expr_term\n");
     } |
-// TODO: expr_term splat
+  expr_term splat
+    {
+      printf ("expr_term splat => expr_term\n");
+    } |
   L_PAREN expression R_PAREN
     {
       printf ("L_PAREN expression R_PAREN => expr_term\n");
@@ -360,6 +363,25 @@ get_attr :
       printf ("PERIOD IDENT => get_attr\n");
     }
   ; /* get_attr */
+
+/**
+ * Splat
+ */
+splat :
+  attr_splat |
+  full_splat
+  ; /* splat */
+
+attr_splat :
+  PERIOD MUL |
+  attr_splat get_attr
+  ; /* attr_splat */
+
+full_splat :
+  L_BRACK MUL R_BRACK |
+  full_splat get_attr |
+  full_splat index
+  ; /* full_splat */
 
 /**
  * Operation
