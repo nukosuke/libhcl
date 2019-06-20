@@ -1,11 +1,11 @@
 /**
- * @file hcl_symtbl.c
+ * @file hcl_hash.c
  * @brief Symbol table printer for manual testing
  * @author nukosuke
  */
 #include <stdio.h>
 #include <hcl.h>
-#include <hcl/symtbl.h>
+#include <hcl/hash.h>
 
 #define SYMTBL_DEFAULT_SIZE 2048
 
@@ -35,12 +35,12 @@ int main (int argc, char **argv)
     }
 
   // TODO: move to under hcl_parse ()
-  struct hcl_symtbl *tbl = hcl_symtbl_new (SYMTBL_DEFAULT_SIZE);
-  hcl_symtbl_addent (tbl, "hoge", "hoge", HCL_STRING_T);
-  hcl_symtbl_addent (tbl, "fuga", hcl, HCL_NUMBER_T);
-  hcl_symtbl_addent (tbl, "piyo", hcl, HCL_BOOL_T);
-  hcl_symtbl_print (tbl);
-  hcl_symtbl_free (tbl);
+  struct hcl_hash *tbl = hcl_hash_new (SYMTBL_DEFAULT_SIZE);
+  hcl_hash_addent (tbl, "hoge", "hoge", HCL_STRING_T);
+  hcl_hash_addent (tbl, "fuga", hcl, HCL_NUMBER_T);
+  hcl_hash_addent (tbl, "piyo", hcl, HCL_BOOL_T);
+  hcl_hash_print (tbl);
+  hcl_hash_free (tbl);
 
   hcl_parse (fp, hcl);
   // TODO: dump the result
