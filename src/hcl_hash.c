@@ -60,6 +60,12 @@ void hcl_hash_free (struct hcl_hash *hash)
  */
 int hcl_hash_addent (struct hcl_hash *hash, char *name, void *addr, enum hcl_type type)
 {
+  // TODO:
+  //   BREAKING CHANGE
+  //
+  // This function should use hashing of the key string
+  // and route it to head entry of list chain.
+
   *hash->cursor = hcl_hash_ent_new (name, addr, type);
   if (*hash->cursor == NULL)
     return 1;
