@@ -36,7 +36,7 @@ int main (int argc, char **argv)
   hcl_object_addent (tbl, "hoge", "hoge", HCL_STRING_T);
   hcl_object_addent (tbl, "fuga", hcl, HCL_NUMBER_T);
   hcl_object_addent (tbl, "piyo", hcl, HCL_BOOL_T);
-  hcl_object_print (tbl);
+  hcl_object_print (stdout, tbl);
   hcl_object_free (tbl);
 
   hcl_parse (fp, hcl);

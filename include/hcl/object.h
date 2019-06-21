@@ -30,7 +30,7 @@ void hcl_object_free (struct hcl_object *);
 int hcl_object_addent (struct hcl_object *, char *, void *, enum hcl_type);
 struct hcl_object_ent *hcl_object_getent (char *);
 
-void hcl_object_print (struct hcl_object *);
+void hcl_object_print (FILE *, struct hcl_object *);
 
 static struct hcl_object_ent *hcl_object_ent_new (char *, void *, enum hcl_type);
 static void hcl_object_ent_free (struct hcl_object_ent *);

@@ -83,15 +83,16 @@ struct hcl_object_ent *hcl_object_getent (char *name)
 /**
  * Print object entries to stdout
  *
+ * @param fp File handler to output
  * @param object Pointer of object
  */
-void hcl_object_print (struct hcl_object *object)
+void hcl_object_print (FILE *fp, struct hcl_object *object)
 {
   for (struct hcl_object_ent **ent = object->ent; *ent != NULL; ent++)
     {
-      printf ("type: %d\t", (*ent)->type);
-      printf ("name: %s\t", (*ent)->name);
-      printf ("addr: %p\n", (*ent)->addr);
+      fprintf (fp, "type: %d\t", (*ent)->type);
+      fprintf (fp, "name: %s\t", (*ent)->name);
+      fprintf (fp, "addr: %p\n", (*ent)->addr);
     }
 }
 
