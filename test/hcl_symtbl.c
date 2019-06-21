@@ -5,7 +5,7 @@
  */
 #include <stdio.h>
 #include <hcl.h>
-#include <hcl/hash.h>
+#include <hcl/object.h>
 
 #define SYMTBL_DEFAULT_SIZE 2048
 
@@ -24,9 +24,6 @@ int main (int argc, char **argv)
       return 1;
     }
 
-  // TODO:
-  // new sym hashtable
-
   struct hcl_t *hcl = hcl_new ();
   if (hcl_init (hcl))
     {
@@ -35,12 +32,12 @@ int main (int argc, char **argv)
     }
 
   // TODO: move to under hcl_parse ()
-  struct hcl_hash *tbl = hcl_hash_new (SYMTBL_DEFAULT_SIZE);
-  hcl_hash_addent (tbl, "hoge", "hoge", HCL_STRING_T);
-  hcl_hash_addent (tbl, "fuga", hcl, HCL_NUMBER_T);
-  hcl_hash_addent (tbl, "piyo", hcl, HCL_BOOL_T);
-  hcl_hash_print (tbl);
-  hcl_hash_free (tbl);
+  struct hcl_object *tbl = hcl_object_new (SYMTBL_DEFAULT_SIZE);
+  hcl_object_addent (tbl, "hoge", "hoge", HCL_STRING_T);
+  hcl_object_addent (tbl, "fuga", hcl, HCL_NUMBER_T);
+  hcl_object_addent (tbl, "piyo", hcl, HCL_BOOL_T);
+  hcl_object_print (tbl);
+  hcl_object_free (tbl);
 
   hcl_parse (fp, hcl);
   // TODO: dump the result
