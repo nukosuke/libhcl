@@ -24,6 +24,7 @@ add_library (hcl
   hcl_func.c
   hcl_list.c
   hcl_object.c
+  hcl_string.c
   hcl_var.c
   ${BISON_hcl_parser_OUTPUTS}
   ${FLEX_hcl_lexer_OUTPUTS}
