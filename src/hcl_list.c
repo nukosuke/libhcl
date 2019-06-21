@@ -18,6 +18,7 @@ struct hcl_list *hcl_list_new (void)
     return NULL;
 
   list->head = NULL;
+  list->tail = NULL;
   list->len  = 0;
 
   return list;
@@ -50,10 +51,21 @@ void hcl_list_free (struct hcl_list *list)
  */
 int hcl_list_addent (struct hcl_list *list, void *addr, enum hcl_type type)
 {
-  if ((list->tail->next = hcl_list_ent_new (addr, type)) == NULL)
+  struct hcl_list_ent *ent = hcl_list_ent_new (addr, type);
+  if (ent == NULL)
     return 1;
 
+  // empty list
+  if (list->tail == NULL)
+    {
+      list->head = ent;
+      list->tail = ent;
+      return 0;
+    }
+
+  list->tail->next = ent;
   list->tail = list->tail->next;
+  list->len++;
   return 0;
 }
 
