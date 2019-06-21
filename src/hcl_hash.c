@@ -89,6 +89,14 @@ void hcl_hash_print (struct hcl_hash *hash)
     }
 }
 
+/**
+ * Hash table entry allocator
+ *
+ * @param key Entry key
+ * @param addr Address of value data
+ * @param type HCL type
+ * @return Pointer of allocated hash table entry
+ */
 static struct hcl_hash_ent *hcl_hash_ent_new (char *name, void *addr, enum hcl_type type)
 {
   struct hcl_hash_ent *ent = (struct hcl_hash_ent *) malloc (sizeof (struct hcl_hash_ent));
@@ -109,6 +117,11 @@ static struct hcl_hash_ent *hcl_hash_ent_new (char *name, void *addr, enum hcl_t
   return ent;
 }
 
+/**
+ * Hash table entry destructor
+ *
+ * @param ent Pointer of hash table entry
+ */
 static void hcl_hash_ent_free (struct hcl_hash_ent *ent)
 {
   free (ent->name);

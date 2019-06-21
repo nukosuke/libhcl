@@ -13,8 +13,7 @@ struct hcl_hash_ent
   char *name;
   void *addr;
   enum hcl_type type;
-
-  // TODO: list
+  struct hcl_hash_ent *next;
 };
 
 struct hcl_hash
