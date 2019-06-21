@@ -21,12 +21,15 @@ add_flex_bison_dependency (hcl_lexer hcl_parser)
 add_library (hcl
   hcl.c
   hcl_alloc.c
+  hcl_bool.c
   hcl_func.c
   hcl_list.c
   hcl_map.c
+  hcl_number.c
   hcl_object.c
   hcl_set.c
   hcl_string.c
+  hcl_tuple.c
   hcl_var.c
   ${BISON_hcl_parser_OUTPUTS}
   ${FLEX_hcl_lexer_OUTPUTS}
