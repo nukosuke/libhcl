@@ -113,6 +113,7 @@ static struct hcl_hash_ent *hcl_hash_ent_new (char *name, void *addr, enum hcl_t
   strcpy (ent->name, name);
   ent->addr = addr;
   ent->type = type;
+  ent->next = NULL;
 
   return ent;
 }
@@ -124,6 +125,11 @@ static struct hcl_hash_ent *hcl_hash_ent_new (char *name, void *addr, enum hcl_t
  */
 static void hcl_hash_ent_free (struct hcl_hash_ent *ent)
 {
-  free (ent->name);
-  free (ent);
+  while (ent)
+    {
+      struct hcl_hash_ent *prev = ent;
+      ent = ent->next;
+      free (prev->name);
+      free (prev);
+    }
 }
