@@ -28,5 +28,6 @@ deploy:
     github_token: $GITHUB_TOKEN
     keep_history: false
     on:
-      tags: true
+      # enable after first release
+      #tags: true
       condition: "$CC = gcc"

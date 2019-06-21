@@ -3,6 +3,8 @@
 
 [HCL2](https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md) parser library for C
 
+**This library is under development. Please DON'T use yet.**
+
 ## Installation
 
 N/A currently
@@ -20,7 +22,7 @@ $ doxygen Doxyfile
 
 ## Build
 
-LibHCL requires [gcc](https://gcc.gnu.org/)/[clang](https://clang.llvm.org/) C compiler and [CMake](https://cmake.org/).
+LibHCL requires [gcc](https://gcc.gnu.org/)/[clang](https://clang.llvm.org/) C compiler, [Flex](https://github.com/westes/flex), [Bison](https://www.gnu.org/software/bison/) and [CMake](https://cmake.org/) to build.
 
 ``` sh
 $ cmake .
