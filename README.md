@@ -22,7 +22,7 @@ $ doxygen Doxyfile
 
 ## Build
 
-LibHCL requires [gcc](https://gcc.gnu.org/)/[clang](https://clang.llvm.org/) C compiler and [CMake](https://cmake.org/).
+LibHCL requires [gcc](https://gcc.gnu.org/)/[clang](https://clang.llvm.org/) C compiler, [Flex](https://github.com/westes/flex), [Bison](https://www.gnu.org/software/bison/) and [CMake](https://cmake.org/) to build.
 
 ``` sh
 $ cmake .
