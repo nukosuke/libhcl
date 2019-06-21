@@ -1,38 +1,38 @@
 /**
- * @file hash.h
+ * @file object.h
  * @brief HCL hash table
  * @author nukosuke
  */
-#ifndef LIBHCL_HCL_HASH_H
-#define LIBHCL_HCL_HASH_H
+#ifndef LIBHCL_HCL_OBJECT_H
+#define LIBHCL_HCL_OBJECT_H
 #include <stddef.h> // size_t
 #include <hcl/types.h>
 
-struct hcl_hash_ent
+struct hcl_object_ent
 {
   char *name;
   void *addr;
   enum hcl_type type;
-  struct hcl_hash_ent *next;
+  struct hcl_object_ent *next;
 };
 
-struct hcl_hash
+struct hcl_object
 {
-  struct hcl_hash_ent **ent;
-  struct hcl_hash_ent **cursor;
+  struct hcl_object_ent **ent;
+  struct hcl_object_ent **cursor;
   size_t size;
 };
 
-struct hcl_hash *hcl_hash_new (size_t);
+struct hcl_object *hcl_object_new (size_t);
 // TODO realloc funcs
-void hcl_hash_free (struct hcl_hash *);
+void hcl_object_free (struct hcl_object *);
 
-int hcl_hash_addent (struct hcl_hash *, char *, void *, enum hcl_type);
-struct hcl_hash_ent *hcl_hash_getent (char *);
+int hcl_object_addent (struct hcl_object *, char *, void *, enum hcl_type);
+struct hcl_object_ent *hcl_object_getent (char *);
 
-void hcl_hash_print (struct hcl_hash *);
+void hcl_object_print (struct hcl_object *);
 
-static struct hcl_hash_ent *hcl_hash_ent_new (char *, void *, enum hcl_type);
-static void hcl_hash_ent_free (struct hcl_hash_ent *);
+static struct hcl_object_ent *hcl_object_ent_new (char *, void *, enum hcl_type);
+static void hcl_object_ent_free (struct hcl_object_ent *);
 
-#endif /* LIBHCL_HCL_HASH */
+#endif /* LIBHCL_HCL_OBJECT */

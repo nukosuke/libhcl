@@ -16,8 +16,21 @@ enum hcl_type {
   HCL_TUPLE_T,
 };
 
-struct hcl_t {
-  // TODO symbol table
+/**
+ * Symbol table for HCL function
+ */
+struct hcl_t //func_table
+{
+  struct hcl_object *h; /*!< Hash table for function entries */
+};
+
+/**
+ * Symbol table for HCL variable
+ * This hash table might be nested for name scope(.)
+ */
+struct hcl_var_table
+{
+  struct hcl_object *h; /*!< Hash table for variable entries */
 };
 
 #endif /* LIBHCL_HCL_TYPES */
