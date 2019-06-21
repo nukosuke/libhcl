@@ -6,6 +6,9 @@
  */
 #include <stdio.h>
 #include <hcl/types.h>
+#include <hcl/object.h>
+
+typedef struct hcl_object hcl_symbol_table;
 
 int yylex ();
 void yyerror (const char *err);
