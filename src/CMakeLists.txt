@@ -23,7 +23,9 @@ add_library (hcl
   hcl_alloc.c
   hcl_func.c
   hcl_list.c
+  hcl_map.c
   hcl_object.c
+  hcl_set.c
   hcl_string.c
   hcl_var.c
   ${BISON_hcl_parser_OUTPUTS}
