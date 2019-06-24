@@ -7,9 +7,9 @@
 #define LIBHCL_HCL_ALLOC_H
 #include <stdbool.h>
 
-int hcl_string (char *val);
-int hcl_number (double val);
-int hcl_bool (bool val);
+int hcl_string (char *);
+int hcl_number (double);
+int hcl_bool (bool);
 int hcl_list (void);
 int hcl_set (void);
 int hcl_map (void);
