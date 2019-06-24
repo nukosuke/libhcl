@@ -14,4 +14,7 @@ struct hcl_tuple
   // TODO
 };
 
+struct hcl_tuple *hcl_tuple_new (void);
+void hcl_tuple_free (struct hcl_tuple *);
+
 #endif /* LIBHCL_HCL_TUPLE_H */
