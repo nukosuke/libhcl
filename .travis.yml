@@ -11,6 +11,7 @@ addons:
     packages:
       - cmake-data
       - cmake
+      - check
       - doxygen
 
 script:
