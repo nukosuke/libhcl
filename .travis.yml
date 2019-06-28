@@ -11,12 +11,13 @@ addons:
     packages:
       - cmake-data
       - cmake
+      - check
       - doxygen
 
 script:
   - cmake .
   - make
-  #- make check
+  - ctest
 
 before_deploy:
   - doxygen Doxyfile

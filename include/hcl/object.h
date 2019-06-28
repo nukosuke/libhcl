@@ -5,6 +5,7 @@
  */
 #ifndef LIBHCL_HCL_OBJECT_H
 #define LIBHCL_HCL_OBJECT_H
+#include <stdio.h>
 #include <stddef.h> // size_t
 #include <hcl/types.h>
 

@@ -4,6 +4,11 @@
 /src/hcl_parser.c
 
 # Test binary
+/test/test_hcl_list
+/test/test_hcl_map
+/test/test_hcl_object
+/test/test_hcl_tuple
+/test/test_hcl_parser
 /test/hcl_stdin
 /test/hcl_symtbl
 
