@@ -1,25 +1,22 @@
 /**
- * @file test_hcl_list.c
- * @brief Test of HCL list type
+ * @file test_hcl_map.c
+ * @brief Test of HCL map type
  * @author nukosuke
  */
 #include <check.h>
-#include <hcl/list.h>
+#include <hcl/map.h>
 
-START_TEST(test_hcl_list_alloc)
+START_TEST(test_hcl_map_alloc)
 {
-  struct hcl_list *list = hcl_list_new ();
-
-  hcl_list_free (list);
 }
 END_TEST
 
 Suite *hcl_list_suite (void)
 {
-  Suite *suite = suite_create("hcl_list");
+  Suite *suite = suite_create("hcl_map");
   TCase *tcase = tcase_create("alloc");
 
-  tcase_add_test(tcase, test_hcl_list_alloc);
+  tcase_add_test(tcase, test_hcl_map_alloc);
   suite_add_tcase(suite, tcase);
 
   return suite;
