@@ -36,6 +36,12 @@ add_executable (test_hcl_map test_hcl_map.c)
 add_test (test_hcl_map ${CMAKE_CURRENT_BINARY_DIR}/test_hcl_map)
 
 #
+# object
+#
+add_executable (test_hcl_object test_hcl_object.c)
+add_test (test_hcl_object ${CMAKE_CURRENT_BINARY_DIR}/test_hcl_object)
+
+#
 # tuple
 #
 add_executable (test_hcl_tuple test_hcl_tuple.c)

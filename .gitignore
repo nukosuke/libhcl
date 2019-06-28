@@ -6,6 +6,7 @@
 # Test binary
 /test/test_hcl_list
 /test/test_hcl_map
+/test/test_hcl_object
 /test/test_hcl_tuple
 /test/test_hcl_parser
 /test/hcl_stdin
