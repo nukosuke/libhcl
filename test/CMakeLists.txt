@@ -40,3 +40,10 @@ add_test (test_hcl_map ${CMAKE_CURRENT_BINARY_DIR}/test_hcl_map)
 #
 add_executable (test_hcl_tuple test_hcl_tuple.c)
 add_test (test_hcl_tuple ${CMAKE_CURRENT_BINARY_DIR}/test_hcl_tuple)
+
+##################################################
+# Tests for HCL parser
+##################################################
+
+add_executable (test_hcl_parser test_hcl_parser.c)
+add_test (test_hcl_parser ${CMAKE_CURRENT_BINARY_DIR}/test_hcl_parser)
