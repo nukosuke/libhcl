@@ -1,0 +1,17 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Install deps
+      run: sudo apt-get install flex bison check
+    - uses: actions/checkout@v1
+    - name: CMake
+      run: cmake .
+    - name: make
+      run: make
+    - name: CTest
+      run: ctest
